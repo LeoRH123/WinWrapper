@@ -2,6 +2,7 @@
 using System.Runtime.CompilerServices;
 using Windows.Win32;
 using Windows.Win32.Foundation;
+using Windows.Win32.Graphics.Gdi;
 using Windows.Win32.UI.WindowsAndMessaging;
 namespace WinWrapper.Windowing;
 
@@ -45,7 +46,7 @@ partial struct Window : IEquatable<Window>
         }
 
         return new(PInvoke.CreateWindowEx(
-            WINDOW_EX_STYLE.WS_EX_OVERLAPPEDWINDOW,
+            WINDOW_EX_STYLE.WS_EX_APPWINDOW,
             windowClass.Name,
             Title,
             WINDOW_STYLE.WS_OVERLAPPEDWINDOW,
@@ -54,9 +55,9 @@ partial struct Window : IEquatable<Window>
             Bounds.Width,
             Bounds.Height,
             HWND.Null,
-            PInvoke.CreateMenu_SafeHandle(),
-            null,//PInvoke.GetModuleHandle(default(string)),
-            (void*)IntPtr.Zero
+            null,
+            PInvoke.GetModuleHandle(default(string)),
+            null
         ));
     }
 
@@ -80,5 +81,4 @@ partial struct Window : IEquatable<Window>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     internal static Window FromWindowHandle(HWND Handle)
         => new(Handle);
-
 }

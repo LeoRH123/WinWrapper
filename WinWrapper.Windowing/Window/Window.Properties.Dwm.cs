@@ -1,7 +1,9 @@
-﻿using Windows.Win32;
-using Windows.Win32.UI.WindowsAndMessaging;
-using Windows.Win32.Graphics.Gdi;
+﻿using System.Drawing.Printing;
+using Windows.Win32;
 using Windows.Win32.Foundation;
+using Windows.Win32.Graphics.Gdi;
+using Windows.Win32.UI.Controls;
+using Windows.Win32.UI.WindowsAndMessaging;
 namespace WinWrapper.Windowing;
 
 partial struct Window
@@ -42,5 +44,21 @@ partial struct Window
             if (!Bitmap.IsNull)
                 PInvoke.SelectObject(new HDC(MemHDC.Value), new HGDIOBJ(OldBitmap.Value));
         }
+    }
+
+    public void ExtendFrameIntoClientArea(Margins margin = default)
+    {
+        if (margin == default)
+        {
+            margin = new(-1, -1, -1, -1);
+        }
+        var margins = new MARGINS()
+        {
+            cxLeftWidth = margin.Left,
+            cxRightWidth = margin.Right,
+            cyTopHeight = margin.Top,
+            cyBottomHeight = margin.Bottom
+        };
+        PInvoke.DwmExtendFrameIntoClientArea(HWND, in margins);
     }
 }

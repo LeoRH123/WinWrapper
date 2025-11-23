@@ -92,3 +92,20 @@ CW_USEDEFAULT
 HANDLE
 
 RegisterWindowMessage
+
+DWM_WINDOW_CORNER_PREFERENCE
+DWM_SYSTEMBACKDROP_TYPE
+
+GetModuleHandle
+UpdateWindow
+
+PostQuitMessage
+BeginPaint
+EndPaint
+
+LoadCursor
+IDC_ARROW
+
+COLOR_WINDOW
+
+DwmExtendFrameIntoClientArea

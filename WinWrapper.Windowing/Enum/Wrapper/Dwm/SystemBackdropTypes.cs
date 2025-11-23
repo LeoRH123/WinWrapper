@@ -1,0 +1,11 @@
+﻿using Windows.Win32.Graphics.Dwm;
+namespace WinWrapper.Windowing.Dwm;
+
+public enum SystemBackdropTypes
+{
+    Auto = DWM_SYSTEMBACKDROP_TYPE.DWMSBT_AUTO,
+    None = DWM_SYSTEMBACKDROP_TYPE.DWMSBT_NONE,
+    MainWindow = DWM_SYSTEMBACKDROP_TYPE.DWMSBT_MAINWINDOW,
+    TransientWindow = DWM_SYSTEMBACKDROP_TYPE.DWMSBT_TRANSIENTWINDOW,
+    TabbedWindow = DWM_SYSTEMBACKDROP_TYPE.DWMSBT_TABBEDWINDOW
+}

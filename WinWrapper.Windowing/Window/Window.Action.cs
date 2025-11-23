@@ -72,6 +72,12 @@ partial struct Window
     public void Show() => IsVisible = true;
 
     /// <summary>
+    /// Updates the client area of <see cref="Window"/> by sending WM_PAINT to window.
+    /// </summary>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public void Update() => PInvoke.UpdateWindow(HWND);
+
+    /// <summary>
     /// Hides the <see cref="Window"/>
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
